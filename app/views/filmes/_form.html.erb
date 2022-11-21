@@ -1,0 +1,37 @@
+<%= form_with(model: [@filme, comment], local: true) do |form| %>
+  <% if comment.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+        <% comment.errors.each do |error| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :release_year, style: "display: block" %>
+    <%= form.number_field :release_year %>
+  </div>
+
+  <div>
+    <%= form.label :actors_id , style: "display: block" %>
+    <%= form.select :actors_id, @actors, {}, {} %>
+  </div>
+
+  <div class = "Write here:">
+    <%= form.label :body %>
+    <%= form.text_area :body %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
